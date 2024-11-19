@@ -1,0 +1,14 @@
+name = SPIDER_MAN
+flags = SF_NOJUMPSPIN
+ability = CA_DOUBLEJUMP
+ability2 = CA2_NONE
+normalspeed = 36
+runspeed = 1
+thrustfactor = 3
+accelstart = 112
+acceleration = 42
+startcolor = 200
+prefcolor = Wave
+supercolor = Sky
+prefoppositecolor = Peridot
+jumpfactor = 1

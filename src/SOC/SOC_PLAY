@@ -1,0 +1,12 @@
+Character
+SkinName = SPIDER_MAN
+DisplayName = Spider-Man
+TagTextColor = SKINCOLOR_CORNFLOWER
+TagOutlineColor = SKINCOLOR_GOLD
+PlayerText = ^4Spider-Man^0 can progress through zones fairly quickly, despite not being able to spin.
+
+^7Ability:^0 Double Jump
+Press jump after jumping once to do a double jump. Pretty simple.
+
+^7Tip:^0 Use the double jump to save yourself from platforming gone wrong or dodge an enemy's attack.
+#
