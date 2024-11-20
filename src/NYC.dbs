@@ -14,7 +14,7 @@ maps
 			resource0
 			{
 				type = 1;
-				location = "C:\\Users\\Speed2411\\Games\\Srb2\\MODDING\\Spider-Man";
+				location = "C:\\Users\\Speed2411\\Games\\Srb2\\MODDING\\Spidey-Robo-Blast-2\\src";
 				option1 = 0;
 				option2 = 0;
 				notfortesting = 0;
@@ -38,9 +38,9 @@ maps
 		overrideceilheight = false;
 		overridebrightness = false;
 		uselongtexturenames = false;
-		viewpositionx = -6337.029f;
-		viewpositiony = 1944.629f;
-		viewscale = 0.04826802f;
+		viewpositionx = -4045.337f;
+		viewpositiony = 3863.972f;
+		viewscale = 0.1792157f;
 		
 		grid
 		{

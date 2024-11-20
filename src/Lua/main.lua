@@ -1,3 +1,5 @@
+freeslot("sfx_weba", "sfx_webb", "sfx_webzipa")
+
 --[[		==================================================	
 			=========      Global variables         ==========			
 			==================================================	
@@ -43,6 +45,36 @@ local function wallClimb(mo, thing, line)
 end
 
 addHook("MobjMoveBlocked", wallClimb)
+
+
+
+
+
+
+
+local function aud_webSlingFX(mo)
+	local sfx
+	local nutweb = 0
+	local mod = leveltime % 2
+	
+	if mod == 0 then sfx = sfx_weba
+	else sfx = sfx_webb end
+	
+	S_StartSound(mo, sfx)
+end
+
+local function aud_webZipFX(mo)
+	local sfx
+	local nutweb = 0
+	local mod = leveltime % 2
+	
+	if mod == 0 then sfx = sfx_webzipa
+	else sfx = sfx_webzipa end
+	
+	S_StartSound(mo, sfx)
+end
+
+
 
 
 --[[		==================================================	
@@ -101,6 +133,8 @@ local function webSling(player)
 
     player.isSwinging = true
     webSlingCooldown = 2 * TICRATE
+	aud_webSlingFX(player.mo)
+	player.mo.state = S_PLAY_RIDE
 end
 
 local function handleWebSlingArc(player)
@@ -149,17 +183,20 @@ local function handleWebSlingArc(player)
     local verticalDifference = player.mo.z - webTarget.z
 
     -- Adjust spriteroll
-    local baseRoll = FixedMul(relativeAngle, FRACUNIT / 32) -- Roll based on horizontal angle
+    local baseRoll = FixedMul(relativeAngle, FRACUNIT / 12) -- Roll based on horizontal angle
     local verticalFactor = FixedMul(verticalDifference, FRACUNIT / 128) -- Roll more when above the target
 
     -- Combine horizontal and vertical roll adjustments
     player.mo.spriteroll = baseRoll + verticalFactor
 
+	player.viewrollangle = baseRoll + verticalFactor
 
     -- End swing if distance is too small or player is grounded
     if player.cmd.buttons & BT_JUMP or P_IsObjectOnGround(player.mo) then
+		player.mo.state = S_PLAY_SPRING
         player.isSwinging = false
         player.webTarget = nil
+		player.mo.spriteroll = 0
     end
 end
 
@@ -178,6 +215,7 @@ local function webZip(player)
 	player.mo.momz = FRACUNIT / 2
 	webZipCooldown = 2*TICRATE
 	print("WebZip")
+	aud_webZipFX(player)
 end
 
 
@@ -209,5 +247,7 @@ local function main(player)
 	handleWebSlingArc(player)
 	cooldownManager()
 	buttonManager(player)
+	
+	if not player.isSwinging then player.viewrollangle = 0 end
 end
 addHook("PlayerThink", main) 
